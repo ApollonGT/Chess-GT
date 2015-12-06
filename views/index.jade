@@ -1,0 +1,167 @@
+doctype html
+html
+    include ./header.jade
+
+    body(ng-app='chess' ng-controller='ctrlMain')
+        div.container.col-xs-12.col-md-6.col-md-offset-1
+            div.board
+                div.col-sx-12.row.board-row.index.index-top
+                    div.index-top-item(data-column='a') a
+                    div.index-top-item(data-column='b') b
+                    div.index-top-item(data-column='c') c
+                    div.index-top-item(data-column='d') d
+                    div.index-top-item(data-column='e') e
+                    div.index-top-item(data-column='f') f
+                    div.index-top-item(data-column='g') g
+                    div.index-top-item(data-column='h') h
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='8') 8
+                    div.step.step-white(data-column='a' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='b' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='c' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='d' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='e' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='f' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='g' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='h' data-row='8' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='8') 8
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='7') 7
+                    div.step.step-brown(data-column='a' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='b' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='c' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='d' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='e' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='f' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='g' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='h' data-row='7' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='7') 7
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='6') 6
+                    div.step.step-white(data-column='a' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='b' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='c' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='d' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='e' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='f' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='g' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='h' data-row='6' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='6') 6
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='5') 5
+                    div.step.step-brown(data-column='a' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='b' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='c' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='d' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='e' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='f' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='g' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='h' data-row='5' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='5') 5
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='4') 4
+                    div.step.step-white(data-column='a' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='b' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='c' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='d' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='e' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='f' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='g' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='h' data-row='4' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='4') 4
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='3') 3
+                    div.step.step-brown(data-column='a' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='b' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='c' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='d' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='e' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='f' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='g' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='h' data-row='3' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='3') 3
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='2') 2
+                    div.step.step-white(data-column='a' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='b' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='c' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='d' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='e' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='f' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='g' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='h' data-row='2' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='2') 2
+                div.col-sx-12.row.board-row
+                    div.index.index-left(data-row='1') 1
+                    div.step.step-brown(data-column='a' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='b' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='c' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='d' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='e' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='f' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-brown(data-column='g' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.step.step-white(data-column='h' data-row='1' ng-click='stepClick($event)' ng-mouseover='stepMouseOver($event)' ng-mouseleave='stepMouseLeave($event)')
+                    div.index.index-right(data-row='1') 1
+                div.col-sx-12.row.board-row.index.index-bottom
+                    div.index-top-item(data-column='a') a
+                    div.index-top-item(data-column='b') b
+                    div.index-top-item(data-column='c') c
+                    div.index-top-item(data-column='d') d
+                    div.index-top-item(data-column='e') e
+                    div.index-top-item(data-column='f') f
+                    div.index-top-item(data-column='g') g
+                    div.index-top-item(data-column='h') h
+        div.col-xs-12.col-md-5(style='margin-top: 50px')
+            div.chess-set.col-md-7
+                div.label.label-info moves
+                h4#moves
+            .chess-set.col-md-7
+                button.btn.btn-warning(ng-click='resetBoard()') Reset
+                button.btn.btn-primary(ng-click='saveBoard()') Save
+                button.btn.btn-info(ng-click='emptyBoard()') Clean Up
+            #chess-set-box.chess-set.col-md-7
+                .row
+                    #bp1.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp2.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp3.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp4.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp5.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp6.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp7.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                    #bp8.chess-set-item.cs-b-pawn(ng-click='itemClick($event)')
+                .row
+                    #bn1.chess-set-item.cs-b-knight(ng-click='itemClick($event)')
+                    #bn2.chess-set-item.cs-b-knight(ng-click='itemClick($event)')
+
+                    #bb1.chess-set-item.cs-b-bishop(ng-click='itemClick($event)')
+                    #bb2.chess-set-item.cs-b-bishop(ng-click='itemClick($event)')
+
+                    #br1.chess-set-item.cs-b-rock(ng-click='itemClick($event)')
+                    #br2.chess-set-item.cs-b-rock(ng-click='itemClick($event)')
+
+                    #bk.chess-set-item.cs-b-king(ng-click='itemClick($event)')
+                    #bq.chess-set-item.cs-b-queen(ng-click='itemClick($event)')
+
+                .row
+                    #wp1.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp2.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp3.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp4.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp5.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp6.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp7.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                    #wp8.chess-set-item.cs-w-pawn(ng-click='itemClick($event)')
+                .row
+                    #wn1.chess-set-item.cs-w-knight(ng-click='itemClick($event)')
+                    #wn2.chess-set-item.cs-w-knight(ng-click='itemClick($event)')
+
+                    #wb1.chess-set-item.cs-w-bishop(ng-click='itemClick($event)')
+                    #wb2.chess-set-item.cs-w-bishop(ng-click='itemClick($event)')
+
+                    #wr1.chess-set-item.cs-w-rock(ng-click='itemClick($event)')
+                    #wr2.chess-set-item.cs-w-rock(ng-click='itemClick($event)')
+
+                    #wk.chess-set-item.cs-w-king(ng-click='itemClick($event)')
+                    #wq.chess-set-item.cs-w-queen(ng-click='itemClick($event)')
+
+        include ./footer.jade

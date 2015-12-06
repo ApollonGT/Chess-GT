@@ -1,0 +1,24 @@
+{
+  "name": "chess-gt",
+  "version": "1.0.0",
+  "description": "A simple web based chess game.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "online",
+    "chess"
+  ],
+  "author": "Gkratsia Tantilian",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.4.8",
+    "body-parser": "^1.14.1",
+    "bootstrap": "^3.3.6",
+    "express": "^4.13.3",
+    "jade": "^1.11.0",
+    "jquery": "^2.1.4",
+    "mongodb": "^2.0.49"
+  }
+}

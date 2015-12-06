@@ -1,0 +1,166 @@
+body {
+	background-color: #757575;
+}
+
+.container {
+	padding-top: 50px;
+}
+
+/* Board */
+.board {
+	position: relative;
+
+	width: 808px;
+	height: 808px;
+	padding: 0;
+	border: 4px solid #263238; 
+	border-radius: 4px;
+
+	box-shadow: 0px 0px 8px;
+}
+
+.board-row {
+	padding: 0px;
+	margin: 0px;
+}
+
+.step {
+	width: 100px;
+	height: 100px;
+	float: left;
+}
+
+.step:hover {
+	/*opacity: 0.6;*/
+	box-shadow: 0px 0px 8px inset;
+}
+
+.step-brown {
+	background-color: #455a64;
+}
+
+.step-white {
+	background-color: #cfd8dc;
+}
+
+.index {
+	position: absolute;
+
+	font-weight: bold;
+	text-shadow: 0px 0px 8px;
+
+	color: #eceff1;
+}
+
+.index-left {
+	margin-top: 45px;
+	left: -30px;
+}
+
+.index-right {
+	margin-top: 45px;
+	right: -30px;
+}
+
+.index-top {
+	top: -30px;
+}
+
+.index-top-item, .index-bottom-item {
+	float: left;
+	width: 100px;
+
+	margin: 0px;
+	padding: 0px;
+	padding-left: 45px;
+}
+
+.index-bottom {
+	bottom: -30px;
+}
+
+.highlight-index {
+	color: #ff9100;
+}
+
+/* chess set */
+.chess-set {
+	background-color: #cfd8dc;
+	box-shadow: 0px 0px 4px inset;
+	padding: 20px
+}
+
+.chess-set-item {
+	z-index: 100;
+	float: left;
+	width: 50px;
+	height: 50px;
+	margin:	24px;
+}
+
+.chess-set-item:hover {  
+	cursor: pointer;
+	-webkit-filter: drop-shadow(0px 6px 8px rgba(0,0,0,0.9));
+  	filter: drop-shadow(0px 6px 8px rgba(0,0,0,0.9));
+}
+
+.chess-set-item.active {  
+	cursor: pointer;
+	-webkit-filter: drop-shadow(0px 6px 8px #ff9100);
+  	filter: drop-shadow(0px 6px 8px #ff9100);
+}
+
+.cs-b-pawn {
+	background-image: url('../img/chess_set/bp.svg');
+}
+
+.cs-b-knight {
+	background-image: url('../img/chess_set/bn.svg');
+}
+
+.cs-b-bishop {
+	background-image: url('../img/chess_set/bb.svg');
+}
+
+.cs-b-rock {
+	background-image: url('../img/chess_set/br.svg');
+}
+
+.cs-b-king {
+	background-image: url('../img/chess_set/bk.svg');
+}
+
+.cs-b-queen {
+	background-image: url('../img/chess_set/bq.svg');
+}
+
+.cs-w-pawn {
+	background-image: url('../img/chess_set/wp.svg');
+}
+
+.cs-w-knight {
+	background-image: url('../img/chess_set/wn.svg');
+}
+
+.cs-w-bishop {
+	background-image: url('../img/chess_set/wb.svg');
+}
+
+.cs-w-rock {
+	background-image: url('../img/chess_set/wr.svg');
+}
+
+.cs-w-king {
+	background-image: url('../img/chess_set/wk.svg');
+}
+
+.cs-w-queen {
+	background-image: url('../img/chess_set/wq.svg');
+}
+
+/* moves */
+#moves {
+	max-height: 200px;
+	overflow-y: auto;
+	padding: 10px;
+}
