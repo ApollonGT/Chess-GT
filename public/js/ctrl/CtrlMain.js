@@ -1,6 +1,7 @@
 (function(){
     var app = angular.module("chess");
     var move = 1;
+    var moves_array = [];
 
     function column_number(col) {
         if (col == 'a') {
@@ -258,6 +259,7 @@
         var from = src.attr("data-column")+src.attr("data-row");
         var to = trgt.attr("data-column")+trgt.attr("data-row");
 
+        moves_array.push(from+" - "+to);
         $("#moves").prepend(move+". "+from+" - "+to+"<br/>");
         move++;
     }
@@ -277,12 +279,41 @@
         }
 
         s.saveBoard = function () {
+            var gm = {
+                name: s.game_name,
+                moves: moves_array
+            };
 
+            web.post("/save", gm).then(function(response){
+                n.success({ message: "Game Saved!", delay: 1000});
+            });
+        }
+
+        s.loadBoard = function () {
+            if (s.game_name.length == 0) {
+                return 0;
+            }
+            var gm = {
+                name: s.game_name
+            };
+            web.post("/load", gm).then(function(response){
+                if (response.data[0]) {
+                    s.resetBoard();
+                    var saved_moves = response.data[0].moves;
+                    angular.forEach(saved_moves, function (move, index) {
+                        s.playMove(move);
+                    });
+                    n.success({ message: "Game Loaded!", delay: 1000});
+                } else {
+                    n.error({title: "Invalid Game Name", message: "Game not found"});
+                }
+            });
         }
 
         s.resetBoard = function ()
         {
             move = 1;
+            moves_array = [];
             $("#moves").html("");
 
             moveItem("bp1", 7, "a");

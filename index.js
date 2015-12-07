@@ -45,7 +45,7 @@ var load_game = function (req, res) {
         var parameters = req.body;
         if (!error) {
             var games = db.collection('chess_game');
-            games.find({"name": parameters.name}).toArray(function(error, docs) {
+            games.find({"name": parameters.name}).toArray(function(err, docs) {
                 res.json(docs);
                 db.close();
             });
@@ -56,11 +56,25 @@ var load_game = function (req, res) {
 /* SAVE */
 var saveGame = function (db, game, callback) {
     var games = db.collection('chess_game');
-    games.insertOne(game, function(error, result) {
-        if (error) {
-            console.log(err(error));
-        } else if (callback) {
-            callback(result);
+    games.find({name: game.name}).toArray(function (error, response) {
+        if (response.length == 0) {
+            games.insertOne(game, function(err, result) {
+                if (err) {
+                    console.log(err);
+                } else if (callback) {
+                    callback(result);
+                }
+                db.close();
+            });
+        } else {
+            games.update({name: game.name}, game, function(err, result) {
+                if (err) {
+                    console.log(err);
+                } else if (callback) {
+                    callback(result);
+                }
+                db.close();
+            });
         }
     });
 }
@@ -69,6 +83,8 @@ var save_game = function (req, res) {
     MongoClient.connect(url, function(error, db) {
         var parameters = req.body;
         var game = {
+            name: parameters.name,
+            moves: parameters.moves
         };
 
         saveGame(db, game, function() {
