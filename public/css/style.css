@@ -83,6 +83,25 @@ body {
 	color: #ff9100;
 }
 
+@media (max-width: 1280px) {
+	.step {
+		width: 50px;
+		height: 50px;
+		float: left;
+	}
+	.board {
+		width: 408px;
+		height: 408px;
+	}
+	.index-left, .index-right {
+		margin-top: 15px;
+	}
+	.index-top-item, .index-bottom-item {
+		width: 50px;
+		padding-left: 20px;
+	}
+}
+
 /* chess set */
 .chess-set {
 	background-color: #cfd8dc;
@@ -156,6 +175,14 @@ body {
 
 .cs-w-queen {
 	background-image: url('../img/chess_set/wq.svg');
+}
+
+@media (max-width: 1280px) {
+	.chess-set-item {
+		width: 25px;
+		height: 25px;
+		margin:	12px;
+	}
 }
 
 /* moves */
