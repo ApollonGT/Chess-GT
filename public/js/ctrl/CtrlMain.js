@@ -139,9 +139,9 @@
         s.playMove = function(m)
         {
             var mvs = m.split(" - ");
-	    var id = $(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']").find("div").attr("id");
+            var id = $(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']").find("div").attr("id");
             logMove($(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']"), $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']"));
-	    moveItem(id, mvs[1].charAt(1), mvs[1].charAt(0));
+            moveItem(id, mvs[1].charAt(1), mvs[1].charAt(0));
         }
 
         angular.element(document).ready(function(){
