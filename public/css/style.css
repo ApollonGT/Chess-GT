@@ -141,7 +141,7 @@ body {
 	background-image: url('../img/chess_set/bb.svg');
 }
 
-.cs-b-rock {
+.cs-b-rook {
 	background-image: url('../img/chess_set/br.svg');
 }
 
@@ -165,7 +165,7 @@ body {
 	background-image: url('../img/chess_set/wb.svg');
 }
 
-.cs-w-rock {
+.cs-w-rook {
 	background-image: url('../img/chess_set/wr.svg');
 }
 
