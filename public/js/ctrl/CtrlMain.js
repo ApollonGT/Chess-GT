@@ -2,6 +2,7 @@
     var app = angular.module("chess");
     var move = 1;
     var moves_array = [];
+    var game_started = false;
 
     function column_number(col) {
         if (col == 'a') {
@@ -269,7 +270,7 @@
         $("#"+id).appendTo(".step[data-row='"+tr+"'][data-column='"+tc+"']");
     }
 
-    var ctrlMain = function (s, web, n) {
+    var ctrlMain = function (s, web, t, n) {
         s.emptyBoard = function ()
         {
             move = 1;
@@ -285,12 +286,13 @@
             };
 
             web.post("/save", gm).then(function(response){
+		game_started = true;
                 n.success({ message: "Game Saved!", delay: 1000});
             });
         }
 
-        s.loadBoard = function () {
-            if (s.game_name.length == 0) {
+        s.loadBoardFun = function (callback) {
+            if (s.game_name && s.game_name.length == 0) {
                 return 0;
             }
             var gm = {
@@ -303,9 +305,37 @@
                     angular.forEach(saved_moves, function (move, index) {
                         s.playMove(move);
                     });
+                    if (callback) callback(1);
+                } else {
+                    if (callback) callback(0);
+                }
+            });
+        }
+
+        s.loadBoard = function () {
+            s.loadBoardFun(function(res){
+            	if (res == 1) {
+		    game_started = true;
                     n.success({ message: "Game Loaded!", delay: 1000});
                 } else {
-                    n.error({title: "Invalid Game Name", message: "Game not found"});
+                    n.error({title: "Invalid Game Name", message: "Game not found", delay: 1000});
+                }
+            });
+        }
+
+        s.deleteBoard = function() {
+            if (s.game_name && s.game_name.length == 0) {
+                return 0;
+            }
+            var gm = {
+                name: s.game_name
+            };
+            web.post("/delete", gm).then(function(response){
+                if (response.data.res) {
+                    s.resetBoard();
+                    n.success({ message: "Game Deleted!", delay: 1000});
+                } else {
+                    n.error({title: "Invalid Game Name", message: "Game not found", delay: 1000});
                 }
             });
         }
@@ -314,6 +344,7 @@
         {
             move = 1;
             moves_array = [];
+            game_started = false;
             $("#moves").html("");
 
             moveItem("bp1", 7, "a");
@@ -382,14 +413,22 @@
             }
             if ($(".chess-set-item.active").length > 0 && !are_the_same($(".chess-set-item.active").parent(), t) &&
                 !is_empty(t) && are_opponents(t.find(".chess-set-item"), $(".chess-set-item.active"))) {
-                logMove($(".chess-set-item.active").parent(), t);
-                t.find(".chess-set-item").appendTo("#chess-set-box");
-                moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
+                if (is_valid_move($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"), n)) {
+                    logMove($(".chess-set-item.active").parent(), t);
+                    t.find(".chess-set-item").appendTo("#chess-set-box");
+                    moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
+                    if (s.game_name && s.game_name.length > 0) {
+                        s.saveBoard();
+                    }
+                }
                 $(".chess-set-item.active").removeClass("active");
             } else if ($(".chess-set-item.active").length > 0 && !are_the_same($(".chess-set-item.active").parent(), t)) {
                 if (is_valid_move($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"), n)) {
                     logMove($(".chess-set-item.active").parent(), t);
                     moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
+                    if (s.game_name && s.game_name.length > 0) {
+                        s.saveBoard();
+                    }
                 }
                 $(".chess-set-item.active").removeClass("active");
             }
@@ -405,6 +444,9 @@
                     logMove($(".chess-set-item.active").parent(), t.parent());
                     moveItem($(".chess-set-item.active").attr("id"), t.parent().attr("data-row"), t.parent().attr("data-column"));
                     t.appendTo("#chess-set-box");
+                    if (s.game_name && s.game_name.length > 0) {
+                        s.saveBoard();
+                    }
                 }
                 $(".chess-set-item.active").removeClass("active");
             } else {
@@ -421,10 +463,20 @@
             moveItem(id, mvs[1].charAt(1), mvs[1].charAt(0));
         }
 
+        t(function() { 
+             if (game_started) {
+                 s.loadBoardFun(function(res) {
+		     if (res) {
+                         game_started = true;
+                     }
+                 });
+             }
+          }, 5000); 
+
         angular.element(document).ready(function(){
             s.resetBoard();
         })
     }
 
-    app.controller("ctrlMain", ["$scope", "$http", "Notification", ctrlMain]);
+    app.controller("ctrlMain", ["$scope", "$http", "$interval", "Notification", ctrlMain]);
 }());

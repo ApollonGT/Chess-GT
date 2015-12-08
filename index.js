@@ -87,7 +87,8 @@ var save_game = function (req, res) {
             moves: parameters.moves
         };
 
-        saveGame(db, game, function() {
+        saveGame(db, game, function(result) {
+            res.json({res: true});
             db.close();
         });
     });
@@ -96,13 +97,12 @@ var save_game = function (req, res) {
 /* DELETE */
 var deleteGame = function (db, game_name, callback) {
     var games = db.collection('chess_game');
-
     games.deleteOne({ "name": game_name }, function (error, result) {
-        if (error) {
-            console.log(err(error));
+        if (error || result.deletedCount == 0) {
+	    callback(false);
+        } else {
+	    callback(true);
         }
-
-        callback();
     });
 }
 
@@ -110,7 +110,12 @@ var delete_game = function (req, res) {
     MongoClient.connect(url, function(error, db) {
         var parameters = req.body;
 
-        deleteGame(db, parameters.name, function() {
+        deleteGame(db, parameters.name, function(r) {
+            if (r) {
+                res.json({res: true});
+            } else {
+                res.json({res: false});
+            }
             db.close();
         });
     });
