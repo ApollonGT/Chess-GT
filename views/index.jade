@@ -113,11 +113,11 @@ html
                     div.index-top-item(data-column='h') h
         div.col-xs-12.col-md-5(style='margin-top: 50px')
             .chess-set.col-md-7
-                input.col-xs-12.form-control(placeholder='Game Name' ng-model='game_name' style='margin-bottom: 10px;')
-                button.btn.btn-warning(ng-click='resetBoard()') Reset
-                button.btn.btn-primary(ng-click='loadBoard()' ng-disabled='!game_name.length') load
-                button.btn.btn-success(ng-click='saveBoard()' ng-disabled='!game_name.length') Save
-                button.btn.btn-info(ng-click='emptyBoard()') Clean Up
+                input.col-xs-12.form-control(placeholder='Game Name' ng-model='game_name' style='margin-bottom: 5px;')
+                button.btn.btn-sm.btn-warning(ng-click='resetBoard()') Reset
+                button.btn.btn-sm.btn-primary(ng-click='loadBoard()' ng-disabled='!game_name.length') load
+                button.btn.btn-sm.btn-success(ng-click='saveBoard()' ng-disabled='!game_name.length') Save
+                //- button.btn.btn-sm.btn-info(ng-click='emptyBoard()') Clean Up
             div.chess-set.col-md-7
                 div.label.label-info moves
                 h4#moves

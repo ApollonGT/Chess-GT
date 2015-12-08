@@ -129,6 +129,10 @@ body {
   	filter: drop-shadow(0px 6px 8px #ff9100);
 }
 
+.chess-set .btn {
+        margin-top: 5px;
+}
+
 .cs-b-pawn {
 	background-image: url('../img/chess_set/bp.svg');
 }
