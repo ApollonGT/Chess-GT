@@ -279,7 +279,7 @@
             $(".chess-set-item").appendTo("#chess-set-box");
         }
 
-        s.saveBoard = function () {
+        s.saveBoardFun = function (callback) {
             var gm = {
                 name: s.game_name,
                 moves: moves_array
@@ -287,7 +287,15 @@
 
             web.post("/save", gm).then(function(response){
 		game_started = true;
-                n.success({ message: "Game Saved!", delay: 1000});
+                if (callback) {
+                    callback();
+                }
+            });
+        }
+
+        s.saveBoard = function() {
+            s.saveBoardFun(function() {
+		    n.success({ message: "Game Saved!", delay: 1000});
             });
         }
 
@@ -418,7 +426,7 @@
                     t.find(".chess-set-item").appendTo("#chess-set-box");
                     moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
                     if (s.game_name && s.game_name.length > 0) {
-                        s.saveBoard();
+                        s.saveBoardFun(false);
                     }
                 }
                 $(".chess-set-item.active").removeClass("active");
@@ -427,7 +435,7 @@
                     logMove($(".chess-set-item.active").parent(), t);
                     moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
                     if (s.game_name && s.game_name.length > 0) {
-                        s.saveBoard();
+                        s.saveBoardFun(false);
                     }
                 }
                 $(".chess-set-item.active").removeClass("active");
@@ -445,7 +453,7 @@
                     moveItem($(".chess-set-item.active").attr("id"), t.parent().attr("data-row"), t.parent().attr("data-column"));
                     t.appendTo("#chess-set-box");
                     if (s.game_name && s.game_name.length > 0) {
-                        s.saveBoard();
+                        s.saveBoardFun(false);
                     }
                 }
                 $(".chess-set-item.active").removeClass("active");
