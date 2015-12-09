@@ -19,7 +19,7 @@ app.use(bodyParser.json());
 /* Database Connection */
 var MongoClient = require('mongodb').MongoClient
     , assert = require('assert');
-var url = 'mongodb://localhost:3717/chess';
+var url = 'mongodb://localhost:3017/chess';
 /* Database Connection */
 
 /*      Start Server      */

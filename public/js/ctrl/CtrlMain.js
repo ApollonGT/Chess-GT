@@ -270,7 +270,7 @@
         $("#"+id).appendTo(".step[data-row='"+tr+"'][data-column='"+tc+"']");
     }
 
-    var ctrlMain = function (s, web, t, n) {
+    var ctrlMain = function (s, web, t, n, ls, q) {
         s.emptyBoard = function ()
         {
             move = 1;
@@ -279,9 +279,11 @@
             $(".chess-set-item").appendTo("#chess-set-box");
         }
 
+        s.ls = ls;
+
         s.saveBoardFun = function (callback) {
             var gm = {
-                name: s.game_name,
+                name: s.ls.game_name,
                 moves: moves_array
             };
 
@@ -291,6 +293,7 @@
                     callback();
                 }
             });
+            s.ls.moves_array = moves_array;
         }
 
         s.saveBoard = function() {
@@ -300,20 +303,24 @@
         }
 
         s.loadBoardFun = function (callback) {
-            if (s.game_name && s.game_name.length == 0) {
+            if (s.ls.game_name && s.ls.game_name.length == 0) {
                 return 0;
             }
             var gm = {
-                name: s.game_name
+                name: s.ls.game_name
             };
             web.post("/load", gm).then(function(response){
                 if (response.data[0]) {
-                    s.resetBoard();
+                    s.resetBoard(true);
                     var saved_moves = response.data[0].moves;
+                    var prom = [];
                     angular.forEach(saved_moves, function (move, index) {
-                        s.playMove(move);
+                        prom.push(s.playMove(move));
                     });
-                    if (callback) callback(1);
+                    q.all(prom).then(function() {
+                        if (callback) callback(1);
+                        s.ls.moves_array = moves_array;
+                    });
                 } else {
                     if (callback) callback(0);
                 }
@@ -332,15 +339,15 @@
         }
 
         s.deleteBoard = function() {
-            if (s.game_name && s.game_name.length == 0) {
+            if (s.ls.game_name && s.ls.game_name.length == 0) {
                 return 0;
             }
             var gm = {
-                name: s.game_name
+                name: s.ls.game_name
             };
             web.post("/delete", gm).then(function(response){
                 if (response.data.res) {
-                    s.resetBoard();
+                    s.resetBoard(true);
                     n.success({ message: "Game Deleted!", delay: 1000});
                 } else {
                     n.error({title: "Invalid Game Name", message: "Game not found", delay: 1000});
@@ -348,10 +355,13 @@
             });
         }
 
-        s.resetBoard = function ()
+        s.resetBoard = function (clear_ls)
         {
             move = 1;
             moves_array = [];
+            if (clear_ls) {
+                s.ls.moves_array = moves_array;
+            }
             game_started = false;
             $("#moves").html("");
 
@@ -425,7 +435,7 @@
                     logMove($(".chess-set-item.active").parent(), t);
                     t.find(".chess-set-item").appendTo("#chess-set-box");
                     moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
-                    if (s.game_name && s.game_name.length > 0) {
+                    if (s.ls.game_name && s.ls.game_name.length > 0) {
                         s.saveBoardFun(false);
                     }
                 }
@@ -434,7 +444,7 @@
                 if (is_valid_move($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"), n)) {
                     logMove($(".chess-set-item.active").parent(), t);
                     moveItem($(".chess-set-item.active").attr("id"), t.attr("data-row"), t.attr("data-column"));
-                    if (s.game_name && s.game_name.length > 0) {
+                    if (s.ls.game_name && s.ls.game_name.length > 0) {
                         s.saveBoardFun(false);
                     }
                 }
@@ -452,7 +462,7 @@
                     logMove($(".chess-set-item.active").parent(), t.parent());
                     moveItem($(".chess-set-item.active").attr("id"), t.parent().attr("data-row"), t.parent().attr("data-column"));
                     t.appendTo("#chess-set-box");
-                    if (s.game_name && s.game_name.length > 0) {
+                    if (s.ls.game_name && s.ls.game_name.length > 0) {
                         s.saveBoardFun(false);
                     }
                 }
@@ -475,6 +485,7 @@
             }
             logMove($(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']"), $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']"));
             moveItem(id, mvs[1].charAt(1), mvs[1].charAt(0));
+            return 1;
         }
 
         t(function() { 
@@ -488,9 +499,14 @@
           }, 5000); 
 
         angular.element(document).ready(function(){
-            s.resetBoard();
+            s.resetBoard(false);
+            if (s.ls.moves_array && s.ls.moves_array.length > 0) {
+                angular.forEach(s.ls.moves_array, function (move, index) {
+                    s.playMove(move);
+                });
+            }
         })
     }
 
-    app.controller("ctrlMain", ["$scope", "$http", "$interval", "Notification", ctrlMain]);
+    app.controller("ctrlMain", ["$scope", "$http", "$interval", "Notification", "$localStorage", "$q", ctrlMain]);
 }());

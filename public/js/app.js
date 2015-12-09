@@ -1,5 +1,5 @@
 (function(){
-    var app = angular.module("chess", ['ui-notification'])
+    var app = angular.module("chess", ['ui-notification', 'ngStorage'])
     .config(function(NotificationProvider) {
         NotificationProvider.setOptions({
             delay: 20000,
