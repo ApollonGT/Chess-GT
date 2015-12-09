@@ -348,6 +348,7 @@
             web.post("/delete", gm).then(function(response){
                 if (response.data.res) {
                     s.resetBoard(true);
+		    s.ls.game_name = "";
                     n.success({ message: "Game Deleted!", delay: 1000});
                 } else {
                     n.error({title: "Invalid Game Name", message: "Game not found", delay: 1000});
@@ -361,7 +362,6 @@
             moves_array = [];
             if (clear_ls) {
                 s.ls.moves_array = moves_array;
-                s.ls.game_name = "";
             }
             game_started = false;
             $("#moves").html("");

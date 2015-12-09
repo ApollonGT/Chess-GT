@@ -114,7 +114,7 @@ html
         div.col-xs-12.col-md-5(style='margin-top: 50px')
             .chess-set.col-md-7
                 input.col-xs-12.form-control(placeholder='Game Name' ng-model='ls.game_name' style='margin-bottom: 5px;')
-                button.btn.btn-sm.btn-warning(ng-click='resetBoard()' title='Reset')
+                button.btn.btn-sm.btn-warning(ng-click='resetBoard(true)' title='Reset')
                     i.glyphicon.glyphicon-refresh
                 button.btn.btn-sm.btn-primary(ng-click='loadBoard()' ng-disabled='!ls.game_name.length' title='Load')
                     i.glyphicon.glyphicon-open
