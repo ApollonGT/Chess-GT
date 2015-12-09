@@ -13,25 +13,25 @@ html
                         span.icon-bar
                         span.icon-bar
                     a.navbar-brand(href='#')
-                        img(src="media/logo.jpg" width="25px")
+                        img(src="media/logo.jpg" width="20px")
                 .collapse.navbar-collapse#main-menu
                     form.navbar-form.navbar-left(role="search" ng-submit="loadBoard()")
                         .form-group
-                            input.col-xs-12.form-control(placeholder='Game Name' ng-model='ls.game_name' style='margin-bottom: 5px;')
+                            input.col-xs-12.form-control(placeholder='Game Name' ng-model='ls.game_name')
                         .form-group
-                            button.btn.btn-sm.btn-warning(ng-click='resetBoard(true)' title='Reset')
+                            button.btn.btn-sm.btn-warning(ng-click='resetBoard(true)' title='Reset' type='button')
                                 i.glyphicon.glyphicon-refresh
                         .form-group
-                            button.btn.btn-sm.btn-primary(ng-click='loadBoard()' ng-disabled='!ls.game_name.length' title='Load')
+                            button.btn.btn-sm.btn-primary(ng-click='loadBoard()' ng-disabled='!ls.game_name.length' title='Load' type='button')
                                 i.glyphicon.glyphicon-open
                         .form-group
-                            button.btn.btn-sm.btn-success(ng-click='saveBoard()' ng-disabled='!ls.game_name.length' title='Save')
+                            button.btn.btn-sm.btn-success(ng-click='saveBoard()' ng-disabled='!ls.game_name.length' title='Save' type='button')
                                 i.glyphicon.glyphicon-save
                         .form-group
-                            button.btn.btn-sm.btn-danger(ng-click='deleteBoard()' ng-disabled='!ls.game_name.length' title='Delete')
+                            button.btn.btn-sm.btn-danger(ng-click='deleteBoard()' ng-disabled='!ls.game_name.length' title='Delete' type='button')
                                 i.glyphicon.glyphicon-trash
                         //-.form-group
-                            //- button.btn.btn-sm.btn-info(ng-click='emptyBoard()') Clean Up
+                            //- button.btn.btn-sm.btn-info(ng-click='emptyBoard()' type='button') Clean Up
                     ul.nav.navbar-nav
         div.container.col-xs-12.col-md-6.col-md-offset-1
             div.board

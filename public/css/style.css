@@ -226,7 +226,6 @@ body {
 
 /* navbar */
 .navbar-form button {
-    margin-bottom: 4px;
 }
 @media (max-width: 768px) {
     .navbar-form button {

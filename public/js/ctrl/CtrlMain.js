@@ -334,7 +334,7 @@
         s.loadBoard = function () {
             s.loadBoardFun(function(res){
             	if (res == 1) {
-		    game_started = true;
+                    game_started = true;
                     n.success({ message: "Game Loaded!", delay: 1000});
                 } else {
                     n.error({title: "Invalid Game Name", message: "Game not found", delay: 1000});
@@ -352,7 +352,7 @@
             web.post("/delete", gm).then(function(response){
                 if (response.data.res) {
                     s.resetBoard(true);
-		    s.ls.game_name = "";
+                    s.ls.game_name = "";
                     n.success({ message: "Game Deleted!", delay: 1000});
                 } else {
                     n.error({title: "Invalid Game Name", message: "Game not found", delay: 1000});
