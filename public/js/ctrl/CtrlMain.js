@@ -259,10 +259,14 @@
     {
         var from = src.attr("data-column")+src.attr("data-row");
         var to = trgt.attr("data-column")+trgt.attr("data-row");
+        var class_name = src.find("div").attr("class").split(" ")[1];
+        var icon = "<div class='"+class_name+"'></div>";
 
         moves_array.push(from+" - "+to);
-        $("#moves").prepend(move+". "+from+" - "+to+"<br/>");
+        $("#moves tbody").prepend("<tr><td>"+move+". </td><td> "+from+" <i class='glyphicon glyphicon-arrow-right'></i> "+to+" </td><td> "+icon+" </td></tr>");
         move++;
+
+        return true;
     }
 
     function moveItem(id, tr, tc)
@@ -274,7 +278,7 @@
         s.emptyBoard = function ()
         {
             move = 1;
-            $("#moves").html("");
+            $("#moves tbody").find("tr").remove();
 
             $(".chess-set-item").appendTo("#chess-set-box");
         }
@@ -288,7 +292,7 @@
             };
 
             web.post("/save", gm).then(function(response){
-		game_started = true;
+                game_started = true;
                 if (callback) {
                     callback();
                 }
@@ -364,7 +368,7 @@
                 s.ls.moves_array = moves_array;
             }
             game_started = false;
-            $("#moves").html("");
+            $("#moves tbody").find("tr").remove();
 
             moveItem("bp1", 7, "a");
             moveItem("bp2", 7, "b");
@@ -478,10 +482,13 @@
         {
             var mvs = m.split(" - ");
             var id = $(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']").find("div").attr("id");
+
+            if (!id) return 0;
+
             if ($(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']").find(".chess-set-item").length > 0 &&
-		$(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']").find(".chess-set-item").length > 0 &&
-                are_opponents($(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']").find(".chess-set-item"),
-                              $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']").find(".chess-set-item")) ) {
+                    $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']").find(".chess-set-item").length > 0 &&
+                    are_opponents($(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']").find(".chess-set-item"),
+                        $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']").find(".chess-set-item")) ) {
                 $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']").find("div").appendTo("#chess-set-box"); 
             }
             logMove($(".step[data-row='"+mvs[0].charAt(1)+"'][data-column='"+mvs[0].charAt(0)+"']"), $(".step[data-row='"+mvs[1].charAt(1)+"'][data-column='"+mvs[1].charAt(0)+"']"));
@@ -491,11 +498,11 @@
 
         t(function() { 
              if (game_started) {
-                 s.loadBoardFun(function(res) {
-		     if (res) {
-                         game_started = true;
-                     }
-                 });
+                s.loadBoardFun(function(res) {
+                    if (res) {
+                        game_started = true;
+                    }
+                });
              }
           }, 5000); 
 
