@@ -15,7 +15,7 @@ html
                     a.navbar-brand(href='#')
                         img(src="media/logo.jpg" width="25px")
                 .collapse.navbar-collapse#main-menu
-                    form.navbar-form.navbar-left(role="search")
+                    form.navbar-form.navbar-left(role="search" ng-submit="loadBoard()")
                         .form-group
                             input.col-xs-12.form-control(placeholder='Game Name' ng-model='ls.game_name' style='margin-bottom: 5px;')
                         .form-group
