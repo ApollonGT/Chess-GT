@@ -361,6 +361,7 @@
             moves_array = [];
             if (clear_ls) {
                 s.ls.moves_array = moves_array;
+                s.ls.game_name = "";
             }
             game_started = false;
             $("#moves").html("");
